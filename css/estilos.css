@@ -1,0 +1,279 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/*este snipet sirve para que cuando des padding no quites px al espacio que estás utilizando*/
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img {
+    max-width: 100%;
+    /* esto hace que la imagen sea responsiva*/
+}
+
+p {
+    font-size: 16px;
+    line-height: 2;
+}
+
+.boton {
+    background-color: #00b8E4;
+    padding: 10px 60px;
+    /*esto define el tamaño del botón*/
+    display: inline-block;
+    /*este display es necesario para aplicar el margin top, sino no lo toma*/
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color .4s ease-in-out;
+    /*esto es para que el cambio de color del hover en el boton esté animado y sera gradual por 4 segundos*/
+}
+
+.boton:hover {
+    background-color: #256575;
+}
+
+.site-header {
+    padding: 20px 0;
+    /*para dar espacio arriba, derecha, abajo, izquierda*/
+}
+
+.contenedor {
+    max-width: 1200px;
+    /*Toma todo el espacio que hay hasta 1200px*/
+    margin: 0 auto;
+    /*centra el logo*/
+}
+
+
+/*esto es para arreglar el float y el footer quede abajo y no como parte del aside*/
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+
+/** Navegacion Responsive **/
+
+.barra {
+    overflow: hidden;
+    /*esto hace que el menu no se vea cuando se activa la navegacion responsiva y solo se vea el icono con los puntitos*/
+}
+
+.mobile-menu {
+    color: #ffffff;
+    font-size: 2rem;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+}
+
+#nav:target {
+    max-height: 800px;
+}
+
+.navegacion-principal {
+    max-height: 0;
+    transition: .5s;
+}
+
+@media (min-width:768px) {
+    .navegacion-principal {
+        max-height: unset;
+    }
+    .mobile-menu,
+    .cerrar {
+        display: none!important;
+    }
+}
+
+
+/** Navegación **/
+
+.barra {
+    background-color: #DB008B;
+    margin-top: 40px;
+    /*genera espacio hacia arriba*/
+}
+
+.navegacion-principal a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 22px;
+    display: block;
+    /*coloca los enlaces del menú uno debajo del otro*/
+    text-align: center;
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    .navegacion-principal a {
+        display: inline-block;
+        /*se usa inline-block para que de espacio y además, ponga los enlaces uno al lado del otro
+        Inline sólo lo pone uno al lado del otro, sin dar espacio*/
+        margin-right: 20px;
+        /*Con esto das más espacio entre enlaces del menu*/
+    }
+}
+
+.navegacion-principal a:hover {
+    background-color: #00b8e4;
+    /*para dar color de fondo a los enlaces del menú*/
+}
+
+
+/** Contenedores Principales **/
+
+.contenido-principal {
+    margin-top: 40px;
+}
+
+.contenido-principal,
+.sidebar {
+    padding: 20px;
+    /*margen hacia arriba, crea un espacio hacia arriba del elemento*/
+}
+
+@media (min-width: 768px) {
+    .contenido-principal {
+        width: 70%;
+        float: left;
+        padding: 0 60px 0 0;
+        /*padding solo para la derecha de 60px*/
+    }
+    .sidebar {
+        width: 30%;
+        float: right;
+        padding: 0;
+        margin-top: 40px;
+        /*esto es para que el sidebar quede a la misma altura que el contenido principal*/
+    }
+}
+
+
+/**Entradas de Blog **/
+
+h2 {
+    color: #00b8E4;
+    margin-bottom: 20px;
+}
+
+.entrada {
+    margin-bottom: 60px;
+}
+
+.entrada:last-of-type {
+    margin-bottom: 0;
+    /*esto es para quitarle el margen a la ultima entrada y evitar el espacio grande que deja al final*/
+}
+
+.entrada img {
+    display: block;
+    /*la foto cuando la pantalla es más pequeña toma todo el espacio disponible*/
+}
+
+@media (min-width: 480px) {
+    .entrada img {
+        width: 300px;
+        float: left;
+        margin: 0 30px 0 0;
+        /*este margen es solo a la derecha*/
+    }
+}
+
+.entrada p {
+    text-align: justify;
+}
+
+
+/** Sidebar **/
+
+.sidebar ul {
+    list-style: none;
+    /*borra los puntos de la lista*/
+    padding: 0;
+    /*para quitar el padding que viene predefinido*/
+}
+
+.sidebar ul li {
+    padding: 10px 10px 10px 0;
+    /* espacio para todos los lados de la entrada menos la izquierda*/
+}
+
+.sidebar ul li:hover {
+    background-color: #00b8E4;
+}
+
+.sidebar ul li a {
+    color: #00b8E4;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.sidebar ul li:hover a {
+    color: #ffffff;
+}
+
+
+/** Footer **/
+
+.footer-sitio {
+    background-color: #DB008B;
+    padding-top: 40px;
+    /*espacio hacia adentro*/
+    margin-top: 60px;
+    /*espacio hacia afuera*/
+    color: #ffffff;
+    text-align: center;
+}
+
+.footer-sitio h2 {
+    color: #ffffff;
+}
+
+.footer-sitio a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 22px;
+    margin-right: 20px;
+}
+
+.footer-sitio a:last-of-type {
+    margin-right: 0;
+}
+
+@media (min-width: 768px) {
+    .footer-sitio .nosotros {
+        float: left;
+        width: 30%;
+        text-align: left;
+    }
+    .footer-sitio .menu {
+        float: right;
+        width: 50%;
+        text-align: right;
+    }
+}
+
+.copyright {
+    background-color: #b10474;
+    margin: 50px 0 0 0;
+    padding: 20px 0;
+    /*esto es para hacer más grande la franja de color del copyright*/
+}
